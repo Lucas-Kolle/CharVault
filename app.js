@@ -24,12 +24,23 @@ const fazerLoop = function(valor1, valor2){
     //inicio do loop
     let contador = Number(inicio)
     while(contador <= fim){
-        numeros.pop(contador)
-        console.log(contador)
+        numeros.push(contador)
         contador = contador+1
     }
 
-    return console.log(numeros)
+    return numeros
 }
 
-fazerLoop("0","30")
+//função para popular o container com os heróis
+const popularContainer = async function(){
+
+    //primeiro passo é chamar a função do loop para gerar um array com os ids que eu quero
+    let id = await fazerLoop("1", "24")
+
+    //passando os ids para a função de buscar heróis
+    let herois = await buscarHerois(id[1])
+
+    return herois
+}
+
+popularContainer()
